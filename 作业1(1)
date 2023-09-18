@@ -1,0 +1,27 @@
+import numpy as np
+import matplotlib.pyplot as plt
+def fuc(x) : return (x-2)**2 #返回函数值
+def x_grad(x): return 2*(x-2) #返回函数的导数值
+x1=-2 #设初始点为-2
+Y_change=fuc(x1) #变化量
+num=1 #迭代初始值
+alpha=0.1 #学习率
+X=[] 
+Y=[] #保存梯度下降中的坐标
+#开始迭代
+while(Y_change!=0&num<100):
+    X.append(x1)
+    Y.append(fuc(x1))
+    t_x1=x1-alpha*x_grad(x1)
+    Y_change=fuc(x1)-fuc(t_x1)
+    x1=t_x1
+    num+=1
+plt.figure()
+#画出原始函数图像
+x2=np.linspace(3,-3,100)
+y2=fuc(x2)
+plt.plot(x2,y2)
+plt.title("f(x)=(x-1)**2")
+#画出梯度下降点的坐标
+plt.scatter(np.array(X),np.array(Y),marker='.')
+plt.show()
